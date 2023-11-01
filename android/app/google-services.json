@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "165808314546",
+    "project_id": "reno-vision",
+    "storage_bucket": "reno-vision.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165808314546:android:938de155efe74301c011ab",
+        "android_client_info": {
+          "package_name": "com.example.minimal_social_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3IWkgY0PxPInWfZpl4CHAgyRN1DuSSpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165808314546:android:9d63d4f7ac895d76c011ab",
+        "android_client_info": {
+          "package_name": "com.example.renovision_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3IWkgY0PxPInWfZpl4CHAgyRN1DuSSpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
