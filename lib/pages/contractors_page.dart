@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:renovision_app/components/my_back_button.dart';
 import 'package:renovision_app/helper/helper_functions.dart';
 
 class ContractorsPage extends StatelessWidget {
@@ -8,11 +9,11 @@ class ContractorsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("C O N T R A C T O R S"),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("C O N T R A C T O R S"),
+      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      //   elevation: 0,
+      // ),
       backgroundColor: Colors.grey.shade300,
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("Users").snapshots(),
@@ -36,17 +37,38 @@ class ContractorsPage extends StatelessWidget {
           // get all contractors
           final contractors = snapshot.data!.docs;
 
-          return ListView.builder(
-            itemCount: contractors.length,
-            itemBuilder: (context, index) {
-              // get individual contractor
-              final contractor = contractors[index];
+          return Column(
+            children: [
+              // back button
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 50,
+                  left: 25.0,
+                ),
+                child: Row(
+                  children: [
+                    MyBackButton(),
+                  ],
+                ),
+              ),
 
-              return ListTile(
-                title: Text(contractor['username']),
-                subtitle: Text(contractor['email']),
-              );
-            },
+              // list of contractors in the app
+              Expanded(
+                child: ListView.builder(
+                  itemCount: contractors.length,
+                  padding: const EdgeInsets.all(0),
+                  itemBuilder: (context, index) {
+                    // get individual contractor
+                    final contractor = contractors[index];
+
+                    return ListTile(
+                      title: Text(contractor['username']),
+                      subtitle: Text(contractor['email']),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),

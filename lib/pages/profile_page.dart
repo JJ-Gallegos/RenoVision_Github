@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:renovision_app/components/my_back_button.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -19,11 +20,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("P R O F I L E"),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("P R O F I L E"),
+      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      //   elevation: 0,
+      // ),
       backgroundColor: Colors.grey.shade200,
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: getUserDetails(),
@@ -47,8 +48,22 @@ class ProfilePage extends StatelessWidget {
 
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // back button
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 50,
+                      left: 25.0,
+                    ),
+                    child: Row(
+                      children: [
+                        MyBackButton(),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 25),
+
                   // profile pic
                   Container(
                     decoration: BoxDecoration(
