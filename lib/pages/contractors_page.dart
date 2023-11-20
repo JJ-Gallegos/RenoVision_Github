@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:renovision_app/components/my_back_button.dart';
+import 'package:renovision_app/components/my_drawer.dart';
 import 'package:renovision_app/helper/helper_functions.dart';
 
 class ContractorsPage extends StatelessWidget {
@@ -9,12 +9,26 @@ class ContractorsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("C O N T R A C T O R S"),
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   elevation: 0,
-      // ),
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(top: 50.0),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'lib/images/renovision_logo.png',
+                  height: 50,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      drawer: const MyDrawer(),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("Users").snapshots(),
         builder: (context, snapshot) {
@@ -39,18 +53,18 @@ class ContractorsPage extends StatelessWidget {
 
           return Column(
             children: [
-              // back button
-              const Padding(
-                padding: EdgeInsets.only(
-                  top: 50,
-                  left: 25.0,
-                ),
-                child: Row(
-                  children: [
-                    MyBackButton(),
-                  ],
-                ),
-              ),
+              // // back button
+              // const Padding(
+              //   padding: EdgeInsets.only(
+              //     top: 50,
+              //     left: 25.0,
+              //   ),
+              //   child: Row(
+              //     children: [
+              //       MyBackButton(),
+              //     ],
+              //   ),
+              // ),
 
               // list of contractors in the app
               Expanded(

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:renovision_app/components/my_back_button.dart';
+import 'package:renovision_app/components/my_drawer.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -20,12 +20,26 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("P R O F I L E"),
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   elevation: 0,
-      // ),
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(top: 50.0),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'lib/images/renovision_logo.png',
+                  height: 50,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      drawer: const MyDrawer(),
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: getUserDetails(),
         builder: (context, snapshot) {
@@ -49,18 +63,15 @@ class ProfilePage extends StatelessWidget {
             return Center(
               child: Column(
                 children: [
-                  // back button
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      top: 50,
-                      left: 25.0,
-                    ),
-                    child: Row(
-                      children: [
-                        MyBackButton(),
-                      ],
-                    ),
-                  ),
+                  // // back button
+                  // const Padding(
+                  //   padding: EdgeInsets.only(top: 50, left: 25.0),
+                  //   child: Row(
+                  //     children: [
+                  //       MyBackButton(),
+                  //     ],
+                  //   ),
+                  // ),
 
                   const SizedBox(height: 25),
 

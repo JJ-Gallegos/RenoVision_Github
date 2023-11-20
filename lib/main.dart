@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:renovision_app/authentication/auth.dart';
 import 'package:renovision_app/authentication/login_or_register.dart';
 import 'package:renovision_app/firebase_options.dart';
+import 'package:renovision_app/pages/flooring_page.dart';
 import 'package:renovision_app/pages/home_page.dart';
-import 'package:renovision_app/pages/how_to_page.dart';
+import 'package:renovision_app/pages/paint_estimation_page.dart';
 import 'package:renovision_app/pages/profile_page.dart';
 import 'package:renovision_app/pages/contractors_page.dart';
+import 'package:renovision_app/pages/roofing_page.dart';
 import 'package:renovision_app/theme/dark_mode.dart';
 import 'package:renovision_app/theme/light_mode.dart';
+import 'package:renovision_app/theme/purple_mode.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,14 +27,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const AuthPage(),
-      theme: lightMode,
+      theme: purpleMode,
+      // theme: lightMode,
       darkTheme: darkMode,
       routes: {
         '/login_register_page': (context) => const LoginOrRegister(),
         '/home_page': (context) => const HomePage(),
         '/profile_page': (context) => ProfilePage(),
         '/contractors_page': (context) => const ContractorsPage(),
-        '/how_to_page': (context) => const HowToPage(),
+        '/paint_page': (context) => PaintEstimationPage(
+              onTap: (double result) {
+                // Handle the result, e.g., display it
+                print('Calculated result: $result');
+              },
+            ),
+        '/flooring_page': (context) => const FlooringPage(),
+        '/roofing_page': (context) => const RoofingPage(),
       },
     );
   }

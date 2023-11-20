@@ -97,13 +97,14 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
 
               // forgot password
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     "Forgot Password?",
                     style: TextStyle(
-                      color: Colors.grey[350],
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -126,15 +127,15 @@ class _LoginPageState extends State<LoginPage> {
                   Text(
                     "Don't have an account?",
                     style: TextStyle(
-                      color: Colors.grey[350],
+                      color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
                   GestureDetector(
                     onTap: widget.onTap,
-                    child: Text(
+                    child: const Text(
                       " Register",
                       style: TextStyle(
-                        color: Colors.grey[350],
+                        color: Colors.blue,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
