@@ -28,19 +28,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const AuthPage(),
       theme: purpleMode,
-      // theme: lightMode,
+      //theme: lightMode,
       darkTheme: darkMode,
       routes: {
         '/login_register_page': (context) => const LoginOrRegister(),
         '/home_page': (context) => const HomePage(),
         '/profile_page': (context) => ProfilePage(),
         '/contractors_page': (context) => const ContractorsPage(),
-        '/paint_page': (context) => PaintEstimationPage(
-              onTap: (double result) {
-                // Handle the result, e.g., display it
-                print('Calculated result: $result');
-              },
-            ),
+        '/paint_page': (context) => PaintEstimationPage(onTap: (double resultController) {},),
         '/flooring_page': (context) => const FlooringPage(),
         '/roofing_page': (context) => const RoofingPage(),
       },

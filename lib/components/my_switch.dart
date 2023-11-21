@@ -76,7 +76,7 @@ class _MySwitchState extends
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: isChecked ? Colors.purple.shade400 : Colors.white,
+                    color: isChecked ? Colors.purple.shade400 : Colors.grey.shade500,
                     blurRadius: 20,
                     offset: const Offset(0, 0)
                   )

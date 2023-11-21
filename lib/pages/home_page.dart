@@ -6,7 +6,8 @@ class HomePage extends StatelessWidget {
   final void Function()? onTap;
 
   const HomePage({
-    super.key, this.onTap,
+    super.key,
+    this.onTap,
   });
 
   @override
@@ -32,39 +33,61 @@ class HomePage extends StatelessWidget {
         ),
       ),
       drawer: const MyDrawer(),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MyButton(
-              text: 'Paint Estimation', 
-              onTap:() {
-                Navigator.pushNamed(context, '/paint_page');
-                },
-              ),
-
-              const SizedBox(height: 25),
-
-              MyButton(
-              text: 'Flooring', 
-              onTap:() {
-                Navigator.pushNamed(context, '/flooring_page');
-                },
-              ),
-
-              const SizedBox(height: 25),
-
-              MyButton(
-              text: 'Roofing', 
-              onTap:() {
-                Navigator.pushNamed(context, '/roofing_page');
-                },
-              ),
-
-              const SizedBox(height: 25),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Column(
+              // smainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'E S T I M A T I O N S',
+                  style: TextStyle(fontSize: 20),
+                ),
+                const SizedBox(height: 20),
+                MyButton(
+                  text: 'Paint',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/paint_page');
+                  },
+                ),
+                const SizedBox(height: 25),
+                MyButton(
+                  text: 'Flooring',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/flooring_page');
+                  },
+                ),
+                const SizedBox(height: 25),
+                MyButton(
+                  text: 'Roofing',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/roofing_page');
+                  },
+                ),
+                const SizedBox(height: 100),
+                const Text(
+                  'C O N T R A C T O R S',
+                  style: TextStyle(fontSize: 20),
+                ),
+                const SizedBox(height: 20),
+                MyButton(
+                  text: 'View Contractors',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/contractors_page');
+                  },
+                ),
+                const SizedBox(height: 25),
+      
+                MyButton(
+                  text: 'Register as Contractor',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/contractors_page');
+                  },
+                ),
+      
+              ],
+            ),
           ),
         ),
       ),
