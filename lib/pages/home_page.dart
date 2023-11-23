@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renovision_app/components/my_button.dart';
+import 'package:renovision_app/components/my_camera.dart';
 import 'package:renovision_app/components/my_drawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -44,6 +45,7 @@ class HomePage extends StatelessWidget {
                   'E S T I M A T I O N S',
                   style: TextStyle(fontSize: 20),
                 ),
+
                 const SizedBox(height: 20),
                 MyButton(
                   text: 'Paint',
@@ -65,7 +67,7 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/roofing_page');
                   },
                 ),
-                const SizedBox(height: 100),
+                const SizedBox(height: 75),
                 const Text(
                   'C O N T R A C T O R S',
                   style: TextStyle(fontSize: 20),
@@ -85,7 +87,15 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/contractors_page');
                   },
                 ),
-      
+
+                const SizedBox(height: 70),
+
+                MyCamera(onTap: () {
+                  Navigator.pushNamed(context, '/paint_page');
+                },
+                ),
+
+                // const Icon(Icons.camera_alt_rounded, size: 60),
               ],
             ),
           ),

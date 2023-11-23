@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
         '/home_page': (context) => const HomePage(),
         '/profile_page': (context) => ProfilePage(),
         '/contractors_page': (context) => const ContractorsPage(),
-        '/paint_page': (context) => PaintEstimationPage(onTap: (double resultController) {},),
+        '/paint_page': (context) => PaintEstimationPage(
+              onTap: (double resultController) {},
+            ),
         '/flooring_page': (context) => const FlooringPage(),
         '/roofing_page': (context) => const RoofingPage(),
       },
