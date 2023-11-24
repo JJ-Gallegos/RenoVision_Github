@@ -19,9 +19,10 @@ class MyCamera extends StatelessWidget {
           color: Theme.of(context).colorScheme.background,
           borderRadius: BorderRadius.circular(40),
         ),
-        child: const Icon(
+        child: Icon(
           Icons.camera_alt_rounded,
           size: 60,
+          color: Colors.grey.shade800
           ),
       ),
     );

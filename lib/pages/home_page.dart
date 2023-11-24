@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:renovision_app/components/my_button.dart';
 import 'package:renovision_app/components/my_camera.dart';
 import 'package:renovision_app/components/my_drawer.dart';
+import 'package:renovision_app/components/my_help_button.dart';
 
 class HomePage extends StatelessWidget {
   final void Function()? onTap;
@@ -37,15 +38,23 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(50.0),
+            padding: const EdgeInsets.only(top: 15, left: 50, right: 50),
             child: Column(
-              // smainAxisAlignment: MainAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    MyHelpButton(
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
                 const Text(
                   'E S T I M A T I O N S',
                   style: TextStyle(fontSize: 20),
                 ),
-
                 const SizedBox(height: 20),
                 MyButton(
                   text: 'Paint',
@@ -53,14 +62,14 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/paint_page');
                   },
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
                 MyButton(
                   text: 'Flooring',
                   onTap: () {
                     Navigator.pushNamed(context, '/flooring_page');
                   },
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
                 MyButton(
                   text: 'Roofing',
                   onTap: () {
@@ -79,23 +88,19 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/contractors_page');
                   },
                 ),
-                const SizedBox(height: 25),
-      
+                const SizedBox(height: 20),
                 MyButton(
                   text: 'Register as Contractor',
                   onTap: () {
-                    Navigator.pushNamed(context, '/contractors_page');
+                    Navigator.pushNamed(context, '/contractor_register_page');
                   },
                 ),
-
-                const SizedBox(height: 70),
-
-                MyCamera(onTap: () {
-                  Navigator.pushNamed(context, '/paint_page');
-                },
+                const SizedBox(height: 75),
+                MyCamera(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/paint_page');
+                  },
                 ),
-
-                // const Icon(Icons.camera_alt_rounded, size: 60),
               ],
             ),
           ),

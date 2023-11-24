@@ -1,8 +1,11 @@
+// ignore_for_file: unused_import
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:renovision_app/authentication/auth.dart';
 import 'package:renovision_app/authentication/login_or_register.dart';
 import 'package:renovision_app/firebase_options.dart';
+import 'package:renovision_app/pages/contractor_register_page.dart';
 import 'package:renovision_app/pages/flooring_page.dart';
 import 'package:renovision_app/pages/home_page.dart';
 import 'package:renovision_app/pages/paint_estimation_page.dart';
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
             ),
         '/flooring_page': (context) => const FlooringPage(),
         '/roofing_page': (context) => const RoofingPage(),
+        '/contractor_register_page': (context) => const ContractorRegisterPage(),
       },
     );
   }

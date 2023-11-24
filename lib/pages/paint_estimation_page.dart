@@ -254,7 +254,7 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MyButton(
-                      text: 'Calculate',
+                      text: 'Estimate!',
                       onTap: () {
                         // Get values from controllers
                         double widthFeet = double.tryParse(widthFeetController.text) ?? 0;
