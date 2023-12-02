@@ -1,5 +1,4 @@
 // ignore_for_file: unused_import
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:renovision_app/authentication/auth.dart';
@@ -30,8 +29,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const AuthPage(),
-      theme: purpleMode,
-      //theme: lightMode,
+      //theme: purpleMode,
+      theme: lightMode,
       darkTheme: darkMode,
       routes: {
         '/login_register_page': (context) => const LoginOrRegister(),
@@ -41,8 +40,12 @@ class MyApp extends StatelessWidget {
         '/paint_page': (context) => PaintEstimationPage(
               onTap: (double resultController) {},
             ),
-        '/flooring_page': (context) => const FlooringPage(),
-        '/roofing_page': (context) => const RoofingPage(),
+        '/flooring_page': (context) => FlooringPage(
+              onTap: (double resultController) {},
+            ),
+        '/roofing_page': (context) => RoofingPage(
+          onTap: (double resultController) {},
+        ),
         '/contractor_register_page': (context) => const ContractorRegisterPage(),
       },
     );

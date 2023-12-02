@@ -54,12 +54,12 @@ void _showHelpDialog(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('- Step 1: Open Measure App\n'),
+              Text('- Step 1: Click the "Scan" button\n'),
               Text('- Step 2: Take your measurements\n'),
-              Text('- Step 3: Click "Estimate!"\n'),
-              Text('- Step 4: Choose desired renovation\n'),
+              Text('- Step 3: Close Measure App\n'),
+              Text('- Step 4: Choose renovation type\n'),
               Text('- Step 5: Enter your measurements\n'),
-              Text('- Step 6: Click "Calculate!"'),
+              Text('- Step 6: Click "Estimate!"'),
               // Add more steps as needed
             ],
           ),
@@ -68,7 +68,12 @@ void _showHelpDialog(BuildContext context) {
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: const Text('Close'),
+              child: Text(
+                'Close',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary
+                ),
+                ),
             ),
           ],
         );

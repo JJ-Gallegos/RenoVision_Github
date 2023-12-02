@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/roofing_page');
                   },
                 ),
-                const SizedBox(height: 75),
+                const SizedBox(height: 65),
                 const Text(
                   'C O N T R A C T O R S',
                   style: TextStyle(fontSize: 20),
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/contractor_register_page');
                   },
                 ),
-                const SizedBox(height: 75),
+                const SizedBox(height: 40),
                 MyCamera(
                   onTap: () {
                     Navigator.pushNamed(context, '/paint_page');
