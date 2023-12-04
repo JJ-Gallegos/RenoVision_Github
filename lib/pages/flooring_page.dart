@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renovision_app/components/my_button.dart';
+import 'package:renovision_app/components/my_camera_appbar.dart';
 import 'package:renovision_app/components/my_drawer.dart';
 import 'package:renovision_app/helper/build_input_text.dart';
 import 'package:renovision_app/helper/estimate_dialog_box.dart';
@@ -21,10 +22,14 @@ class _FlooringPageState extends State<FlooringPage> {
   final TextEditingController matWidthController = TextEditingController();
   final TextEditingController matLengthController = TextEditingController();
   final TextEditingController gapSizeController = TextEditingController();
-  final TextEditingController floorWidthFeetController = TextEditingController();
-  final TextEditingController floorWidthInchController = TextEditingController();
-  final TextEditingController floorLengthFeetController = TextEditingController();
-  final TextEditingController floorLengthInchController = TextEditingController();
+  final TextEditingController floorWidthFeetController =
+      TextEditingController();
+  final TextEditingController floorWidthInchController =
+      TextEditingController();
+  final TextEditingController floorLengthFeetController =
+      TextEditingController();
+  final TextEditingController floorLengthInchController =
+      TextEditingController();
   final TextEditingController resultController = TextEditingController();
 
   // disposes of values when calculated
@@ -66,6 +71,16 @@ class _FlooringPageState extends State<FlooringPage> {
             ),
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MyCameraAppBar(
+              onTap: () {
+                // Handle camera button tap if needed
+              },
+            ),
+          ),
+        ],
       ),
       drawer: const MyDrawer(),
       body: SingleChildScrollView(
@@ -270,22 +285,34 @@ class _FlooringPageState extends State<FlooringPage> {
                         // get values from user input
                         onTap: () {
                           // matertial size values
-                          double matWidth = double.tryParse(matWidthController.text) ?? 0;
-                          double matLength = double.tryParse(matLengthController.text) ?? 0;
+                          double matWidth =
+                              double.tryParse(matWidthController.text) ?? 0;
+                          double matLength =
+                              double.tryParse(matLengthController.text) ?? 0;
                           double gapSize = selectedGapSizeInches;
 
                           // floor size values
-                          double floorLengthFeet = double.tryParse(floorLengthFeetController.text) ?? 0;
-                          double floorLengthInch = double.tryParse(floorLengthInchController.text) ?? 0;
-                          double floorWidthFeet = double.tryParse(floorWidthFeetController.text) ?? 0;
-                          double floorWidthInch = double.tryParse(floorWidthInchController.text) ?? 0;
+                          double floorLengthFeet =
+                              double.tryParse(floorLengthFeetController.text) ??
+                                  0;
+                          double floorLengthInch =
+                              double.tryParse(floorLengthInchController.text) ??
+                                  0;
+                          double floorWidthFeet =
+                              double.tryParse(floorWidthFeetController.text) ??
+                                  0;
+                          double floorWidthInch =
+                              double.tryParse(floorWidthInchController.text) ??
+                                  0;
 
                           // size of material
                           double matSize = matWidth * matLength;
 
                           // floor length/width in inches
-                          double floorLength = (floorLengthFeet * 12) + floorLengthInch;
-                          double floorWidth = (floorWidthFeet * 12) + floorWidthInch;
+                          double floorLength =
+                              (floorLengthFeet * 12) + floorLengthInch;
+                          double floorWidth =
+                              (floorWidthFeet * 12) + floorWidthInch;
 
                           // calculate total area to cover
                           double floorArea = floorWidth * floorLength;

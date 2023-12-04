@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renovision_app/components/my_button.dart';
+import 'package:renovision_app/components/my_camera_appbar.dart';
 import 'package:renovision_app/components/my_drawer.dart';
 import 'package:renovision_app/helper/build_input_text.dart';
 import 'package:renovision_app/helper/estimate_dialog_box.dart';
@@ -22,8 +23,10 @@ class _RoofingPageState extends State<RoofingPage> {
   final TextEditingController shingleLengthController = TextEditingController();
   final TextEditingController roofWidthFeetController = TextEditingController();
   final TextEditingController roofWidthInchController = TextEditingController();
-  final TextEditingController roofLengthFeetController = TextEditingController();
-  final TextEditingController roofLengthInchController =TextEditingController();
+  final TextEditingController roofLengthFeetController =
+      TextEditingController();
+  final TextEditingController roofLengthInchController =
+      TextEditingController();
   final TextEditingController resultController = TextEditingController();
 
   // disposes of values when calculated
@@ -60,6 +63,16 @@ class _RoofingPageState extends State<RoofingPage> {
             ),
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MyCameraAppBar(
+              onTap: () {
+                // Handle camera button tap if needed
+              },
+            ),
+          ),
+        ],
       ),
       drawer: const MyDrawer(),
       body: SingleChildScrollView(
@@ -205,21 +218,34 @@ class _RoofingPageState extends State<RoofingPage> {
                         // get values from user input
                         onTap: () {
                           // shingle size values
-                          double shingleWidth = double.tryParse(shingleWidthController.text) ?? 0;
-                          double shingleLength = double.tryParse(shingleLengthController.text) ?? 0;
+                          double shingleWidth =
+                              double.tryParse(shingleWidthController.text) ?? 0;
+                          double shingleLength =
+                              double.tryParse(shingleLengthController.text) ??
+                                  0;
 
                           // roof size values
-                          double roofWidthFeet = double.tryParse(roofWidthFeetController.text) ?? 0;
-                          double roofWidthInch = double.tryParse(roofWidthInchController.text) ?? 0;
-                          double roofLengthFeet = double.tryParse(roofLengthFeetController.text) ?? 0;
-                          double roofLengthInch = double.tryParse(roofLengthInchController.text) ?? 0;
+                          double roofWidthFeet =
+                              double.tryParse(roofWidthFeetController.text) ??
+                                  0;
+                          double roofWidthInch =
+                              double.tryParse(roofWidthInchController.text) ??
+                                  0;
+                          double roofLengthFeet =
+                              double.tryParse(roofLengthFeetController.text) ??
+                                  0;
+                          double roofLengthInch =
+                              double.tryParse(roofLengthInchController.text) ??
+                                  0;
 
                           // size of shingle
                           double shingleSize = shingleWidth * shingleLength;
 
                           // floor length/width in inches
-                          double roofLength = (roofLengthFeet * 12) + roofLengthInch;
-                          double roofWidth = (roofWidthFeet * 12) + roofWidthInch;
+                          double roofLength =
+                              (roofLengthFeet * 12) + roofLengthInch;
+                          double roofWidth =
+                              (roofWidthFeet * 12) + roofWidthInch;
 
                           // calculate total area to cover
                           double roofArea = roofWidth * roofLength;
@@ -237,7 +263,7 @@ class _RoofingPageState extends State<RoofingPage> {
                           // Show the result alert
                           CustomAlertDialog.showAlert(
                             context,
-                            'Shingles Needed:\n\n${resultController.text} pieces', 
+                            'Shingles Needed:\n\n${resultController.text} pieces',
                           );
                         }),
                   ],
