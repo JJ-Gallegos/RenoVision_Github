@@ -8,9 +8,9 @@ class FlooringPage extends StatefulWidget {
   final void Function(double result)? onTap;
 
   const FlooringPage({
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<FlooringPage> createState() => _FlooringPageState();
@@ -21,20 +21,15 @@ class _FlooringPageState extends State<FlooringPage> {
   final TextEditingController matWidthController = TextEditingController();
   final TextEditingController matLengthController = TextEditingController();
   final TextEditingController gapSizeController = TextEditingController();
-  final TextEditingController floorWidthFeetController =
-      TextEditingController();
-  final TextEditingController floorWidthInchController =
-      TextEditingController();
-  final TextEditingController floorLengthFeetController =
-      TextEditingController();
-  final TextEditingController floorLengthInchController =
-      TextEditingController();
+  final TextEditingController floorWidthFeetController = TextEditingController();
+  final TextEditingController floorWidthInchController = TextEditingController();
+  final TextEditingController floorLengthFeetController = TextEditingController();
+  final TextEditingController floorLengthInchController = TextEditingController();
   final TextEditingController resultController = TextEditingController();
 
   // disposes of values when calculated
   @override
   void dispose() {
-    super.dispose();
     matWidthController.dispose();
     matLengthController.dispose();
     gapSizeController.dispose();
@@ -43,10 +38,9 @@ class _FlooringPageState extends State<FlooringPage> {
     floorLengthFeetController.dispose();
     floorLengthInchController.dispose();
     resultController.dispose();
+    super.dispose();
   }
 
-  // stores paint calculation
-  double? floorCalculation;
   // stores gap size measurements
   String? selectedGapSize;
   double selectedGapSizeInches = 0.0;
@@ -113,17 +107,30 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (inches)*',
-                        controller: matWidthController,
+                        label: 'Length (inches)*',
+                        controller: matLengthController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (inches)*',
-                        controller: matLengthController,
+                        label: 'Width (inches)*',
+                        controller: matWidthController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
+                    const SizedBox(width: 10),
                   ],
                 ),
                 Column(
@@ -199,15 +206,27 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (feet)*',
-                        controller: floorWidthFeetController,
+                        label: 'Length (feet)*',
+                        controller: floorLengthFeetController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (inches)*',
-                        controller: floorWidthInchController,
+                        label: 'Length (inches)*',
+                        controller: floorLengthInchController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ],
@@ -217,15 +236,27 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (feet)*',
-                        controller: floorLengthFeetController,
+                        label: 'Width (feet)*',
+                        controller: floorWidthFeetController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (inches)*',
-                        controller: floorLengthInchController,
+                        label: 'Width (inches)*',
+                        controller: floorWidthInchController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ],
@@ -238,47 +269,39 @@ class _FlooringPageState extends State<FlooringPage> {
                         text: 'Estimate!',
                         // get values from user input
                         onTap: () {
-                          double matWidth =
-                              (double.tryParse(matWidthController.text) ?? 0) / 12;
-
-                          double matLength =
-                              (double.tryParse(matLengthController.text) ?? 0) / 12;
-
+                          // matertial size values
+                          double matWidth = double.tryParse(matWidthController.text) ?? 0;
+                          double matLength = double.tryParse(matLengthController.text) ?? 0;
                           double gapSize = selectedGapSizeInches;
 
-                          double floorWidthFeet =
-                              double.tryParse(floorWidthFeetController.text) ?? 0;
-
-                          double floorWidthInch =
-                              (double.tryParse(floorWidthInchController.text) ?? 0) / 12;
-
-                          double floorLengthFeet =
-                              double.tryParse(floorLengthFeetController.text) ?? 0;
-
-                          double floorLengthInch =
-                              (double.tryParse(floorLengthInchController.text) ?? 0) / 12;
+                          // floor size values
+                          double floorLengthFeet = double.tryParse(floorLengthFeetController.text) ?? 0;
+                          double floorLengthInch = double.tryParse(floorLengthInchController.text) ?? 0;
+                          double floorWidthFeet = double.tryParse(floorWidthFeetController.text) ?? 0;
+                          double floorWidthInch = double.tryParse(floorWidthInchController.text) ?? 0;
 
                           // size of material
                           double matSize = matWidth * matLength;
 
-                          // floor width
-                          double floorWidth = floorWidthFeet + floorWidthInch;
-
-                          // floor length
-                          double floorLength = floorLengthFeet + floorLengthInch;
+                          // floor length/width in inches
+                          double floorLength = (floorLengthFeet * 12) + floorLengthInch;
+                          double floorWidth = (floorWidthFeet * 12) + floorWidthInch;
 
                           // calculate total area to cover
                           double floorArea = floorWidth * floorLength;
 
                           // calculate tile size
-                          double tileSize = (matSize + gapSize) / 144;
+                          double tileSize = matSize + gapSize;
 
                           // calculate amount of plank/tile needed
                           double totalMatNeeded = floorArea / tileSize;
 
+                          // round total plank/tile needed up to whole value
+                          int roundedMatNeeded = totalMatNeeded.ceil();
+
                           // update the result text
                           resultController.text =
-                              totalMatNeeded.toStringAsFixed(2);
+                              roundedMatNeeded.toStringAsFixed(0);
 
                           // Show the result alert
                           CustomAlertDialog.showAlert(

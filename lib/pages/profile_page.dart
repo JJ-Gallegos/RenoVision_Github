@@ -63,16 +63,6 @@ class ProfilePage extends StatelessWidget {
             return Center(
               child: Column(
                 children: [
-                  // // back button
-                  // const Padding(
-                  //   padding: EdgeInsets.only(top: 50, left: 25.0),
-                  //   child: Row(
-                  //     children: [
-                  //       MyBackButton(),
-                  //     ],
-                  //   ),
-                  // ),
-
                   const SizedBox(height: 25),
 
                   // profile pic
@@ -91,11 +81,18 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(height: 25),
 
                   // username
-                  Text(
-                    user!['username'],
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    padding: const EdgeInsets.only(top: 10, left: 100, right: 100, bottom: 10),
+                    child: Text(
+                      user!['username'],
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
 
@@ -106,6 +103,7 @@ class ProfilePage extends StatelessWidget {
                     user['email'],
                     style: TextStyle(
                       color: Colors.grey[600],
+                      fontSize: 18,
                     ),
                   ),
                 ],

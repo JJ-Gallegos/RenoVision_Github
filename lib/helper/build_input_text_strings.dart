@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class BuildInputText extends StatelessWidget {
+class BuildInputTextStrings extends StatelessWidget {
   final String label;
   final TextEditingController controller;
 
-  const BuildInputText({
+  const BuildInputTextStrings({
     super.key, 
     required this.label,
     required this.controller, required String? Function(dynamic value) validator
@@ -18,9 +17,6 @@ class BuildInputText extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.digitsOnly, // Restrict to digits
-        ],
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),

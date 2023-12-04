@@ -8,9 +8,9 @@ class RoofingPage extends StatefulWidget {
   final void Function(double result)? onTap;
 
   const RoofingPage({
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<RoofingPage> createState() => _RoofingPageState();
@@ -18,37 +18,26 @@ class RoofingPage extends StatefulWidget {
 
 class _RoofingPageState extends State<RoofingPage> {
   // measurement controllers
-  final TextEditingController matWidthController = TextEditingController();
-  final TextEditingController matLengthController = TextEditingController();
-  final TextEditingController gapSizeController = TextEditingController();
-  final TextEditingController floorWidthFeetController =
-      TextEditingController();
-  final TextEditingController floorWidthInchController =
-      TextEditingController();
-  final TextEditingController floorLengthFeetController =
-      TextEditingController();
-  final TextEditingController floorLengthInchController =
-      TextEditingController();
+  final TextEditingController shingleWidthController = TextEditingController();
+  final TextEditingController shingleLengthController = TextEditingController();
+  final TextEditingController roofWidthFeetController = TextEditingController();
+  final TextEditingController roofWidthInchController = TextEditingController();
+  final TextEditingController roofLengthFeetController = TextEditingController();
+  final TextEditingController roofLengthInchController =TextEditingController();
   final TextEditingController resultController = TextEditingController();
 
   // disposes of values when calculated
   @override
   void dispose() {
-    super.dispose();
-    matWidthController.dispose();
-    matLengthController.dispose();
-    gapSizeController.dispose();
-    floorWidthFeetController.dispose();
-    floorWidthInchController.dispose();
-    floorLengthFeetController.dispose();
-    floorLengthInchController.dispose();
+    shingleWidthController.dispose();
+    shingleLengthController.dispose();
+    roofWidthFeetController.dispose();
+    roofWidthInchController.dispose();
+    roofLengthFeetController.dispose();
+    roofLengthInchController.dispose();
     resultController.dispose();
+    super.dispose();
   }
-
-  // stores paint calculation
-  double? floorCalculation;
-  // stores gap size measurements
-  String? selectedGapSize;
 
   @override
   Widget build(BuildContext context) {
@@ -112,69 +101,32 @@ class _RoofingPageState extends State<RoofingPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (inches)*',
-                        controller: matWidthController,
+                        label: 'Length (inches)*',
+                        controller: shingleLengthController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (inches)*',
-                        controller: matLengthController,
+                        label: 'Width (inches)*',
+                        controller: shingleWidthController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ],
                 ),
-                // Column(
-                //   children: [
-                //     Padding(
-                //       padding:
-                //           const EdgeInsets.only(top: 10, left: 5, right: 200),
-                //       child: DropdownButtonFormField(
-                //         decoration: InputDecoration(
-                //           labelText: 'Gap Size\n(optional)',
-                //           labelStyle: TextStyle(
-                //               color:
-                //                   Theme.of(context).colorScheme.inversePrimary),
-                //           enabledBorder: OutlineInputBorder(
-                //             borderSide: BorderSide(
-                //                 color: Theme.of(context)
-                //                     .colorScheme
-                //                     .inversePrimary),
-                //             borderRadius: BorderRadius.circular(10),
-                //           ),
-                //           focusedBorder: OutlineInputBorder(
-                //             borderSide: BorderSide(
-                //                 color: Theme.of(context).colorScheme.secondary),
-                //             borderRadius: BorderRadius.circular(10),
-                //           ),
-                //         ),
-                //         style: TextStyle(
-                //             color:
-                //                 Theme.of(context).colorScheme.inversePrimary),
-                //         value: selectedGapSize, // Set the initial value or null
-                //         items: const [
-                //           DropdownMenuItem(
-                //               value: '1/16', child: Text('1/16 inch')),
-                //           DropdownMenuItem(
-                //               value: '1/8', child: Text('1/8 inch')),
-                //           DropdownMenuItem(
-                //               value: '3/16', child: Text('3/16 inch')),
-                //           DropdownMenuItem(
-                //               value: '1/4', child: Text('1/4 inch')),
-                //           // Add more items as needed
-                //         ],
-                //         onChanged: (value) {
-                //           // Handle the selected value
-                //           setState(() {
-                //             selectedGapSize = value;
-                //           });
-                //         },
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 60),
                 Text(
                   'A R E A   T O   C O V E R :',
                   style: TextStyle(
@@ -183,43 +135,68 @@ class _RoofingPageState extends State<RoofingPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: BuildInputText(
-                        label: 'Width (feet)*',
-                        controller: floorWidthFeetController,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: BuildInputText(
-                        label: 'Width (inches)*',
-                        controller: floorWidthInchController,
-                      ),
-                    ),
-                  ],
-                ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
                       child: BuildInputText(
                         label: 'Length (feet)*',
-                        controller: floorLengthFeetController,
+                        controller: roofLengthFeetController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
                         label: 'Length (inches)*',
-                        controller: floorLengthInchController,
+                        controller: roofLengthInchController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: BuildInputText(
+                        label: 'Width (feet)*',
+                        controller: roofWidthFeetController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: BuildInputText(
+                        label: 'Width (inches)*',
+                        controller: roofWidthInchController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 110),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -227,49 +204,35 @@ class _RoofingPageState extends State<RoofingPage> {
                         text: 'Estimate!',
                         // get values from user input
                         onTap: () {
-                          double matWidth =
-                              (double.tryParse(matWidthController.text) ?? 0) /
-                                  12;
-                          double matLength =
-                              (double.tryParse(matLengthController.text) ?? 0) /
-                                  12;
-                          double gapSize =
-                              (double.tryParse(gapSizeController.text) ?? 0) /
-                                  12;
-                          double floorWidthFeet =
-                              double.tryParse(floorWidthFeetController.text) ??
-                                  0;
-                          double floorWidthInch =
-                              (double.tryParse(floorWidthInchController.text) ??
-                                      0) /
-                                  12;
-                          double floorLengthFeet =
-                              double.tryParse(floorLengthFeetController.text) ??
-                                  0;
-                          double floorLengthInch = (double.tryParse(
-                                      floorLengthInchController.text) ??
-                                  0) /
-                              12;
+                          // shingle size values
+                          double shingleWidth = double.tryParse(shingleWidthController.text) ?? 0;
+                          double shingleLength = double.tryParse(shingleLengthController.text) ?? 0;
 
-                          // size of material wanted
-                          double matSize = matWidth * matLength;
+                          // roof size values
+                          double roofWidthFeet = double.tryParse(roofWidthFeetController.text) ?? 0;
+                          double roofWidthInch = double.tryParse(roofWidthInchController.text) ?? 0;
+                          double roofLengthFeet = double.tryParse(roofLengthFeetController.text) ?? 0;
+                          double roofLengthInch = double.tryParse(roofLengthInchController.text) ?? 0;
 
-                          // total floor width
-                          double floorWidth = floorWidthFeet + floorWidthInch;
+                          // size of shingle
+                          double shingleSize = shingleWidth * shingleLength;
 
-                          // total floor length
-                          double floorLength =
-                              floorLengthFeet + floorLengthInch;
+                          // floor length/width in inches
+                          double roofLength = (roofLengthFeet * 12) + roofLengthInch;
+                          double roofWidth = (roofWidthFeet * 12) + roofWidthInch;
 
                           // calculate total area to cover
-                          double totalArea = floorWidth * floorLength;
+                          double roofArea = roofWidth * roofLength;
 
-                          // calculate amount of plank/tile needed
-                          double totalMatNeeded = totalArea / matSize;
+                          // calculate amount of shingles needed
+                          double totalShingleNeeded = roofArea / shingleSize;
+
+                          // round total plank/tile needed up to whole value
+                          int roundedShingleNeeded = totalShingleNeeded.ceil();
 
                           // update the result text
                           resultController.text =
-                              totalMatNeeded.toStringAsFixed(2);
+                              roundedShingleNeeded.toStringAsFixed(0);
 
                           // Show the result alert
                           CustomAlertDialog.showAlert(

@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/contractor_register_page');
                   },
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 55),
                 MyCamera(
                   onTap: () {
                     Navigator.pushNamed(context, '/paint_page');

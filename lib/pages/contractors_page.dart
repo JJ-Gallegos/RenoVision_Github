@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:renovision_app/components/my_drawer.dart';
+import 'package:renovision_app/components/my_list_tile.dart';
 import 'package:renovision_app/helper/helper_functions.dart';
 
 class ContractorsPage extends StatelessWidget {
@@ -53,19 +54,6 @@ class ContractorsPage extends StatelessWidget {
 
           return Column(
             children: [
-              // // back button
-              // const Padding(
-              //   padding: EdgeInsets.only(
-              //     top: 50,
-              //     left: 25.0,
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       MyBackButton(),
-              //     ],
-              //   ),
-              // ),
-
               // list of contractors in the app
               Expanded(
                 child: ListView.builder(
@@ -75,10 +63,13 @@ class ContractorsPage extends StatelessWidget {
                     // get individual contractor
                     final contractor = contractors[index];
 
-                    return ListTile(
-                      title: Text(contractor['username']),
-                      subtitle: Text(contractor['email']),
-                    );
+                    String username = contractor['username'];
+                    String email = contractor['email'];
+
+                    return MyListTile(
+                      title: username,
+                      subTitle: email
+                      );
                   },
                 ),
               ),
