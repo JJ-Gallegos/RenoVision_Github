@@ -44,9 +44,10 @@ class MyApp extends StatelessWidget {
               onTap: (double resultController) {},
             ),
         '/roofing_page': (context) => RoofingPage(
-          onTap: (double resultController) {},
-        ),
-        '/contractor_register_page': (context) => const ContractorRegisterPage(),
+              onTap: (double resultController) {},
+            ),
+        '/contractor_register_page': (context) =>
+            const ContractorRegisterPage(),
       },
     );
   }

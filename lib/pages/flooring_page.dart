@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renovision_app/components/help_button_custom.dart';
 import 'package:renovision_app/components/my_button.dart';
 import 'package:renovision_app/components/my_camera_appbar.dart';
 import 'package:renovision_app/components/my_drawer.dart';
@@ -109,12 +110,27 @@ class _FlooringPageState extends State<FlooringPage> {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-                Text(
-                  'S I Z E :',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'S I Z E :',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    MyHelpButtonCustom(
+                      onTap: () {
+                        // Your onTap logic
+                      },
+                      helpSteps: const [
+                        'Gap size: the amount of space in between each set of tile or plank',
+                        // Add more steps as needed
+                      ],
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -126,7 +142,7 @@ class _FlooringPageState extends State<FlooringPage> {
                         controller: matLengthController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
+                            return 'Please enter your material length';
                           }
                           return null;
                         },
@@ -139,7 +155,7 @@ class _FlooringPageState extends State<FlooringPage> {
                         controller: matWidthController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
+                            return 'Please enter your material width';
                           }
                           return null;
                         },
@@ -185,6 +201,7 @@ class _FlooringPageState extends State<FlooringPage> {
                               value: '3/16', child: Text('3/16 inch')),
                           DropdownMenuItem(
                               value: '1/4', child: Text('1/4 inch')),
+                          DropdownMenuItem(value: '0', child: Text('None')),
                           // Add more items as needed
                         ],
                         onChanged: (value) {
@@ -225,7 +242,7 @@ class _FlooringPageState extends State<FlooringPage> {
                         controller: floorLengthFeetController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
+                            return 'Please enter your floor length (feet)';
                           }
                           return null;
                         },
@@ -238,7 +255,7 @@ class _FlooringPageState extends State<FlooringPage> {
                         controller: floorLengthInchController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
+                            return 'Please enter your floor length (inches)';
                           }
                           return null;
                         },
@@ -255,7 +272,7 @@ class _FlooringPageState extends State<FlooringPage> {
                         controller: floorWidthFeetController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
+                            return 'Please enter your floor width (feet)';
                           }
                           return null;
                         },
@@ -268,7 +285,7 @@ class _FlooringPageState extends State<FlooringPage> {
                         controller: floorWidthInchController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
+                            return 'Please enter your floor width (inches)';
                           }
                           return null;
                         },

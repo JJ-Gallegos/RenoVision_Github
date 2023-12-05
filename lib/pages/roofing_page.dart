@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renovision_app/components/help_button_custom.dart';
 import 'package:renovision_app/components/my_button.dart';
 import 'package:renovision_app/components/my_camera_appbar.dart';
 import 'package:renovision_app/components/my_drawer.dart';
@@ -94,12 +95,27 @@ class _RoofingPageState extends State<RoofingPage> {
                   ),
                 ),
                 const SizedBox(height: 50),
-                Text(
-                  'S H I N G L E   S I Z E :',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'S H I N G L E   S I Z E :',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    MyHelpButtonCustom(
+                      onTap: () {
+                        // Your onTap logic
+                      },
+                      helpSteps: const [
+                        'Overlap of shingles is accounted for in the estimation',
+                        // Add more steps as needed
+                      ],
+                    ),
+                  ],
                 ),
                 // Text(
                 //   'S I Z E :',

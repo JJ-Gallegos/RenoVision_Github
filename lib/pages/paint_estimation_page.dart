@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:renovision_app/components/help_button_custom.dart';
 import 'package:renovision_app/components/my_button.dart';
 import 'package:renovision_app/components/my_camera_appbar.dart';
 import 'package:renovision_app/components/my_drawer.dart';
-//import 'package:renovision_app/components/my_help_button.dart';
 import 'package:renovision_app/helper/build_input_text.dart';
 import 'package:renovision_app/helper/estimate_dialog_box.dart';
 
@@ -20,41 +20,37 @@ class PaintEstimationPage extends StatefulWidget {
 
 class _PaintEstimationPageState extends State<PaintEstimationPage> {
   // measurement text controllers
-  final TextEditingController lengthFeetController = TextEditingController();
-  final TextEditingController lengthInchController = TextEditingController();
-  final TextEditingController widthFeetController = TextEditingController();
-  final TextEditingController widthInchController = TextEditingController();
-  final TextEditingController heightFeetController = TextEditingController();
-  final TextEditingController heightInchController = TextEditingController();
+  final TextEditingController wallLengthFeetController =
+      TextEditingController();
+  final TextEditingController wallLengthInchController =
+      TextEditingController();
+  final TextEditingController wallWidthFeetController = TextEditingController();
+  final TextEditingController wallWidthInchController = TextEditingController();
+  final TextEditingController numOfWallsController = TextEditingController();
+  final TextEditingController doorCountController = TextEditingController();
+  final TextEditingController windowHeightController = TextEditingController();
+  final TextEditingController windowWidthController = TextEditingController();
+  final TextEditingController numOfWindowsController = TextEditingController();
   final TextEditingController baseboardHeightController =
       TextEditingController();
   final TextEditingController crownMoldingHeightController =
       TextEditingController();
-  final TextEditingController doorHeightController = TextEditingController();
-  final TextEditingController doorWidthController = TextEditingController();
-  final TextEditingController numOfDoorsController = TextEditingController();
-  final TextEditingController windowHeightController = TextEditingController();
-  final TextEditingController windowWidthController = TextEditingController();
-  final TextEditingController numOfWindowsController = TextEditingController();
   final TextEditingController resultController = TextEditingController();
 
   // disposes of values when calculated
   @override
   void dispose() {
-    lengthFeetController.dispose();
-    lengthInchController.dispose();
-    widthFeetController.dispose();
-    widthInchController.dispose();
-    heightFeetController.dispose();
-    heightInchController.dispose();
-    baseboardHeightController.dispose();
-    crownMoldingHeightController.dispose();
-    doorHeightController.dispose();
-    doorWidthController.dispose();
-    numOfDoorsController.dispose();
+    wallLengthFeetController.dispose();
+    wallLengthInchController.dispose();
+    wallWidthFeetController.dispose();
+    wallWidthInchController.dispose();
+    numOfWallsController.dispose();
+    doorCountController.dispose();
     windowHeightController.dispose();
     windowWidthController.dispose();
     numOfWindowsController.dispose();
+    baseboardHeightController.dispose();
+    crownMoldingHeightController.dispose();
     resultController.dispose();
     super.dispose();
   }
@@ -129,7 +125,7 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         Expanded(
                           child: BuildInputText(
                             label: 'Length (feet)',
-                            controller: lengthFeetController,
+                            controller: wallLengthFeetController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter the length in feet';
@@ -142,7 +138,7 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         Expanded(
                           child: BuildInputText(
                             label: 'Length (inches)',
-                            controller: lengthInchController,
+                            controller: wallLengthInchController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter the length in inches';
@@ -161,7 +157,7 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         Expanded(
                           child: BuildInputText(
                             label: 'Width (feet)',
-                            controller: widthFeetController,
+                            controller: wallWidthFeetController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter the width in feet';
@@ -174,7 +170,7 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         Expanded(
                           child: BuildInputText(
                             label: 'Width (inches)',
-                            controller: widthInchController,
+                            controller: wallWidthInchController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter the width in inches';
@@ -185,37 +181,15 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         ),
                       ],
                     ),
-
-                    // Height Row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: BuildInputText(
-                            label: 'Height (feet)',
-                            controller: heightFeetController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter the height in feet';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: BuildInputText(
-                            label: 'Height (inches)',
-                            controller: heightInchController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter the height in inches';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
+                    BuildInputText(
+                      label: 'Number of walls',
+                      controller: numOfWallsController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the number of walls';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                   ],
@@ -231,39 +205,9 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                     ),
                   ),
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: BuildInputText(
-                            label: 'Height (inches)',
-                            controller: doorHeightController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your door height';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: BuildInputText(
-                            label: 'Width (inches)',
-                            controller: doorWidthController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your door width';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
                     BuildInputText(
                       label: 'Number of doors',
-                      controller: numOfDoorsController,
+                      controller: doorCountController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the number of doors';
@@ -275,7 +219,7 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                   ],
                 ),
 
-                // Trim Size ExpansionTile
+                // Window Size ExpansionTile
                 ExpansionTile(
                   title: Text(
                     'W I N D O W  S I Z E :',
@@ -331,12 +275,27 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
 
                 // Trim Size ExpansionTile
                 ExpansionTile(
-                  title: Text(
-                    'T R I M  S I Z E :',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
+                  title: Row(
+                    children: [
+                      Text(
+                        'T R I M  S I Z E :',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      MyHelpButtonCustom(
+                        onTap: () {
+                          // Your onTap logic
+                        },
+                        helpSteps: const [
+                          'Baseboard: molding that runs along the bottom of walls',
+                          'Crown Molding: molding that runs along the top ceilings'
+                          // Add more steps as needed
+                        ],
+                      ),
+                    ],
                   ),
                   children: [
                     Row(
@@ -382,32 +341,34 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                       text: 'Estimate!',
                       onTap: () {
                         // wall size values
-                        double lengthFeet =
-                            double.tryParse(lengthFeetController.text) ?? 0;
-                        double lengthInch =
-                            double.tryParse(lengthInchController.text) ?? 0;
-                        double widthFeet =
-                            double.tryParse(widthFeetController.text) ?? 0;
-                        double widthInches =
-                            double.tryParse(widthInchController.text) ?? 0;
-                        double heightFeet =
-                            double.tryParse(heightFeetController.text) ?? 0;
-                        double heightInches =
-                            double.tryParse(heightInchController.text) ?? 0;
-                        // wall length/width/height in inches
-                        double wallLength = (lengthFeet * 12) + lengthInch;
-                        double wallWidth = (widthFeet * 12) + widthInches;
-                        double wallHeight = (heightFeet * 12) + heightInches;
+                        double wallLengthFeet =
+                            double.tryParse(wallLengthFeetController.text) ?? 0;
+                        double wallLengthInch =
+                            double.tryParse(wallLengthInchController.text) ?? 0;
+                        double wallWidthFeet =
+                            double.tryParse(wallWidthFeetController.text) ?? 0;
+                        double wallWidthInch =
+                            double.tryParse(wallWidthInchController.text) ?? 0;
+
+                        // wall length/width in inches
+                        double wallLength =
+                            (wallLengthFeet * 12) + wallLengthInch;
+                        double wallWidth = (wallWidthFeet * 12) + wallWidthInch;
+                        int numOfWalls =
+                            int.tryParse(numOfWallsController.text) ?? 1;
+                        // total wall size
+                        double totalWallSize =
+                            numOfWalls * (wallLength * wallWidth);
 
                         // door size values
-                        double doorHeight =
-                            double.tryParse(doorHeightController.text) ?? 0;
-                        double doorWidth =
-                            double.tryParse(doorWidthController.text) ?? 0;
                         int numOfDoors =
-                            int.tryParse(numOfDoorsController.text) ?? 1;
-                        // door size in inches
-                        double doorSize = doorHeight * doorWidth;
+                            int.tryParse(doorCountController.text) ?? 1;
+                        // door size in square feet
+                        double doorSize = (3 * 12) +
+                            (6.67 *
+                                12); // assuming doors are 3 ft wide and 6 ft 8 in tall
+                        // total door size
+                        double totalDoorSize = doorSize * numOfDoors;
 
                         // window size values
                         double windowHeight =
@@ -417,7 +378,8 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         int numOfWindows =
                             int.tryParse(numOfWindowsController.text) ?? 1;
                         // window size in inches
-                        double windowSize = windowHeight * windowWidth;
+                        double totalWindowSize =
+                            numOfWindows * (windowHeight * windowWidth);
 
                         // trim size values
                         double baseboardHeight =
@@ -427,17 +389,13 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                                 crownMoldingHeightController.text) ??
                             0;
 
-                        // calculate total square footage
-                        double totalSquareFeet =
-                            2 * (wallLength + wallWidth) * wallHeight;
-
-                        // subtract doors,windwos,trim from square footage
+                        // subtract doors, windows, and trim from square footage
                         double adjustedTotalSquareFeet =
-                            totalSquareFeet - (doorSize + windowSize);
+                            totalWallSize - totalDoorSize - totalWindowSize;
 
                         // calculate gallons needed (1 gallon per 400 square feet)
-                        // multiply by 2 for two coats typically needed
-                        double gallonsNeeded = adjustedTotalSquareFeet / 400.0;
+                        double gallonsNeeded =
+                            adjustedTotalSquareFeet / (400.0 * 12);
 
                         // update the result text
                         resultController.text =
