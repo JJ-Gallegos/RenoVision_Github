@@ -1,5 +1,3 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:renovision_app/components/my_button.dart';
 import 'package:renovision_app/components/my_drawer.dart';
@@ -7,12 +5,7 @@ import 'package:renovision_app/helper/build_input_text.dart';
 import 'package:renovision_app/helper/build_input_text_strings.dart';
 
 class ContractorRegisterPage extends StatefulWidget {
-  //final void Function()? onTap;
-
-  const ContractorRegisterPage({
-    super.key,
-    //required this.onTap,
-  });
+  const ContractorRegisterPage({super.key});
 
   @override
   State<ContractorRegisterPage> createState() => _ContractorRegisterPageState();
@@ -191,7 +184,7 @@ class _ContractorRegisterPageState extends State<ContractorRegisterPage> {
                   controller: paintRateController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your first name';
+                      return 'Please enter your paint rate';
                     }
                     return null;
                   },
@@ -203,7 +196,7 @@ class _ContractorRegisterPageState extends State<ContractorRegisterPage> {
                   controller: floorRateController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your first name';
+                      return 'Please enter your floor rate';
                     }
                     return null;
                   },
@@ -215,7 +208,7 @@ class _ContractorRegisterPageState extends State<ContractorRegisterPage> {
                   controller: roofRateController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your first name';
+                      return 'Please enter your roof rate';
                     }
                     return null;
                   },
@@ -223,36 +216,61 @@ class _ContractorRegisterPageState extends State<ContractorRegisterPage> {
 
                 Padding(
                   padding: const EdgeInsets.only(
-                      top: 25, left: 40, right: 40, bottom: 25),
+                    top: 25,
+                    left: 40,
+                    right: 40,
+                    bottom: 25,
+                  ),
                   child: MyButton(
                     text: 'Register',
-                    onTap: () async {
-                      // Collect user information
+                    onTap: () {
+                      // Validate all text fields
+                      if (firstNameController.text.isEmpty ||
+                          lastNameController.text.isEmpty ||
+                          businessNameController.text.isEmpty ||
+                          businessEmailController.text.isEmpty ||
+                          phoneNumberController.text.isEmpty ||
+                          zipcodeController.text.isEmpty ||
+                          paintRateController.text.isEmpty ||
+                          floorRateController.text.isEmpty ||
+                          roofRateController.text.isEmpty) {
+                        // Display an error message if any field is empty
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please fill in all fields.'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                        return; // Do not proceed with registration if any field is empty
+                      }
+
+                      // Create and store contractor
                       String firstName = firstNameController.text;
                       String lastName = lastNameController.text;
                       String businessName = businessNameController.text;
                       String businessEmail = businessEmailController.text;
                       String phoneNumber = phoneNumberController.text;
                       String zipcode = zipcodeController.text;
-                      double paintRate = double.parse(paintRateController.text);
-                      double floorRate = double.parse(floorRateController.text);
-                      double roofRate = double.parse(roofRateController.text);
+                      String paintRate = paintRateController.text;
+                      String floorRate = floorRateController.text;
+                      String roofRate = roofRateController.text;
 
-                      // Store user information in Firestore
-                      await FirebaseFirestore.instance.collection("Contractors").add({
-                        'firstName': firstName,
-                        'lastName': lastName,
-                        'businessName': businessName,
-                        'businessEmail': businessEmail,
-                        'phoneNumber': phoneNumber,
-                        'zipcode': zipcode,
-                        'paintRate': paintRate,
-                        'floorRate': floorRate,
-                        'roofRate': roofRate,
-                      });
+                      Contractor newContractor = Contractor(
+                        firstName: firstName,
+                        lastName: lastName,
+                        businessName: businessName,
+                        businessEmail: businessEmail,
+                        phoneNumber: phoneNumber,
+                        zipcode: zipcode,
+                        paintRate: paintRate,
+                        floorRate: floorRate,
+                        roofRate: roofRate,
+                      );
 
-                      // Navigate to the next page
-                      if (context.mounted) Navigator.pushNamed(context, '/paint_page');
+                      ContractorRepository.contractors.add(newContractor);
+
+                      // Redirect to home page
+                      Navigator.pushNamed(context, '/home_page');
                     },
                   ),
                 ),
@@ -263,4 +281,32 @@ class _ContractorRegisterPageState extends State<ContractorRegisterPage> {
       ),
     );
   }
+}
+
+class Contractor {
+  String firstName;
+  String lastName;
+  String businessName;
+  String businessEmail;
+  String phoneNumber;
+  String zipcode;
+  String paintRate;
+  String floorRate;
+  String roofRate;
+
+  Contractor({
+    required this.firstName,
+    required this.lastName,
+    required this.businessName,
+    required this.businessEmail,
+    required this.phoneNumber,
+    required this.zipcode,
+    required this.paintRate,
+    required this.floorRate,
+    required this.roofRate,
+  });
+}
+
+class ContractorRepository {
+  static List<Contractor> contractors = [];
 }

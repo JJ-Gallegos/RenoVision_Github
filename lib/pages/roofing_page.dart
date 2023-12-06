@@ -241,27 +241,20 @@ class _RoofingPageState extends State<RoofingPage> {
                                   0;
 
                           // roof size values
-                          double roofWidthFeet =
-                              double.tryParse(roofWidthFeetController.text) ??
-                                  0;
-                          double roofWidthInch =
-                              double.tryParse(roofWidthInchController.text) ??
-                                  0;
-                          double roofLengthFeet =
-                              double.tryParse(roofLengthFeetController.text) ??
-                                  0;
-                          double roofLengthInch =
-                              double.tryParse(roofLengthInchController.text) ??
-                                  0;
+                          double roofLength = (double.tryParse(
+                                      roofLengthFeetController.text) ??
+                                  0) +
+                              (double.tryParse(roofLengthInchController.text) ??
+                                  0 / 12);
+                          double roofWidth = (double.tryParse(
+                                      roofWidthFeetController.text) ??
+                                  0) +
+                              (double.tryParse(roofWidthInchController.text) ??
+                                  0 / 12);
 
                           // size of shingle
-                          double shingleSize = shingleWidth * shingleLength;
-
-                          // floor length/width in inches
-                          double roofLength =
-                              (roofLengthFeet * 12) + roofLengthInch;
-                          double roofWidth =
-                              (roofWidthFeet * 12) + roofWidthInch;
+                          double shingleSize =
+                              (shingleWidth * shingleLength) / 144;
 
                           // calculate total area to cover
                           double roofArea = roofWidth * roofLength;
@@ -270,7 +263,8 @@ class _RoofingPageState extends State<RoofingPage> {
                           double totalShingleNeeded = roofArea / shingleSize;
 
                           // round total plank/tile needed up to whole value
-                          int roundedShingleNeeded = totalShingleNeeded.ceil();
+                          int roundedShingleNeeded =
+                              2 * totalShingleNeeded.ceil();
 
                           // update the result text
                           resultController.text =

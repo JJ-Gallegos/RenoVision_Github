@@ -138,11 +138,11 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (inches)*',
-                        controller: matLengthController,
+                        label: 'Width (inches)',
+                        controller: matWidthController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your material length';
+                            return 'Please enter your material width';
                           }
                           return null;
                         },
@@ -151,11 +151,11 @@ class _FlooringPageState extends State<FlooringPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (inches)*',
-                        controller: matWidthController,
+                        label: 'Length (inches)',
+                        controller: matLengthController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your material width';
+                            return 'Please enter your material length';
                           }
                           return null;
                         },
@@ -168,7 +168,7 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 10, left: 5, right: 200),
+                          const EdgeInsets.only(top: 10, left: 5, right: 205),
                       child: DropdownButtonFormField(
                         decoration: InputDecoration(
                           labelText: 'Gap Size\n(optional)',
@@ -238,7 +238,7 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (feet)*',
+                        label: 'Length (feet)',
                         controller: floorLengthFeetController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -251,7 +251,7 @@ class _FlooringPageState extends State<FlooringPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Length (inches)*',
+                        label: 'Length (inches)',
                         controller: floorLengthInchController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -268,7 +268,7 @@ class _FlooringPageState extends State<FlooringPage> {
                   children: [
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (feet)*',
+                        label: 'Width (feet)',
                         controller: floorWidthFeetController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -281,7 +281,7 @@ class _FlooringPageState extends State<FlooringPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: BuildInputText(
-                        label: 'Width (inches)*',
+                        label: 'Width (inches)',
                         controller: floorWidthInchController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -306,30 +306,23 @@ class _FlooringPageState extends State<FlooringPage> {
                               double.tryParse(matWidthController.text) ?? 0;
                           double matLength =
                               double.tryParse(matLengthController.text) ?? 0;
-                          double gapSize = selectedGapSizeInches;
+                          double gapSize = selectedGapSizeInches / 12;
 
                           // floor size values
-                          double floorLengthFeet =
-                              double.tryParse(floorLengthFeetController.text) ??
-                                  0;
-                          double floorLengthInch =
-                              double.tryParse(floorLengthInchController.text) ??
-                                  0;
-                          double floorWidthFeet =
-                              double.tryParse(floorWidthFeetController.text) ??
-                                  0;
-                          double floorWidthInch =
-                              double.tryParse(floorWidthInchController.text) ??
-                                  0;
+                          double floorLength = (double.tryParse(
+                                      floorLengthFeetController.text) ??
+                                  0) +
+                              (double.tryParse(
+                                      floorLengthInchController.text) ??
+                                  0 / 12);
+                          double floorWidth = (double.tryParse(
+                                      floorWidthFeetController.text) ??
+                                  0) +
+                              (double.tryParse(floorWidthInchController.text) ??
+                                  0 / 12);
 
                           // size of material
-                          double matSize = matWidth * matLength;
-
-                          // floor length/width in inches
-                          double floorLength =
-                              (floorLengthFeet * 12) + floorLengthInch;
-                          double floorWidth =
-                              (floorWidthFeet * 12) + floorWidthInch;
+                          double matSize = (matWidth * matLength) / 144;
 
                           // calculate total area to cover
                           double floorArea = floorWidth * floorLength;

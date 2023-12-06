@@ -24,7 +24,7 @@ class CustomAlertDialog {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
-                ),
+              ),
             ),
           ],
         );

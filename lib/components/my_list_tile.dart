@@ -8,12 +8,12 @@ class MyListTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.subTitle,
-    });
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
@@ -26,7 +26,7 @@ class MyListTile extends StatelessWidget {
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
             ),
-            ),
+          ),
         ),
       ),
     );

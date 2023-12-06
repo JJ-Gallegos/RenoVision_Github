@@ -205,6 +205,15 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                     ),
                   ),
                   children: [
+                    Text(
+                      '*Standard American door size is 36 by 80 inches.\n'
+                      '*Enter only the amount of doors in a given room.',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     BuildInputText(
                       label: 'Number of doors',
                       controller: doorCountController,
@@ -234,11 +243,11 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                       children: [
                         Expanded(
                           child: BuildInputText(
-                            label: 'Height (inches)',
-                            controller: windowHeightController,
+                            label: 'Width (inches)',
+                            controller: windowWidthController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your window height';
+                                return 'Please enter your window width';
                               }
                               return null;
                             },
@@ -247,11 +256,11 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: BuildInputText(
-                            label: 'Width (inches)',
-                            controller: windowWidthController,
+                            label: 'Height (inches)',
+                            controller: windowHeightController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your window width';
+                                return 'Please enter your window height';
                               }
                               return null;
                             },
@@ -340,66 +349,65 @@ class _PaintEstimationPageState extends State<PaintEstimationPage> {
                     MyButton(
                       text: 'Estimate!',
                       onTap: () {
-                        // wall size values
-                        double wallLengthFeet =
-                            double.tryParse(wallLengthFeetController.text) ?? 0;
-                        double wallLengthInch =
-                            double.tryParse(wallLengthInchController.text) ?? 0;
-                        double wallWidthFeet =
-                            double.tryParse(wallWidthFeetController.text) ?? 0;
-                        double wallWidthInch =
-                            double.tryParse(wallWidthInchController.text) ?? 0;
-
-                        // wall length/width in inches
-                        double wallLength =
-                            (wallLengthFeet * 12) + wallLengthInch;
-                        double wallWidth = (wallWidthFeet * 12) + wallWidthInch;
+                        // store wall values
+                        double wallLength = (double.tryParse(
+                                    wallLengthFeetController.text) ??
+                                0) +
+                            (double.tryParse(wallLengthInchController.text) ??
+                                0 / 12);
+                        double wallWidth = (double.tryParse(
+                                    wallWidthFeetController.text) ??
+                                0) +
+                            (double.tryParse(wallWidthInchController.text) ??
+                                0 / 12);
                         int numOfWalls =
                             int.tryParse(numOfWallsController.text) ?? 1;
-                        // total wall size
-                        double totalWallSize =
-                            numOfWalls * (wallLength * wallWidth);
 
-                        // door size values
+                        // store door values
+                        // standard door size is 36 x 80 inches
+                        double doorSize = (36 * 80) / 144; // converts to feet
                         int numOfDoors =
                             int.tryParse(doorCountController.text) ?? 1;
-                        // door size in square feet
-                        double doorSize = (3 * 12) +
-                            (6.67 *
-                                12); // assuming doors are 3 ft wide and 6 ft 8 in tall
-                        // total door size
-                        double totalDoorSize = doorSize * numOfDoors;
 
-                        // window size values
+                        // store window values
                         double windowHeight =
                             double.tryParse(windowHeightController.text) ?? 0;
                         double windowWidth =
                             double.tryParse(windowWidthController.text) ?? 0;
+                        double windowSize = (windowHeight * windowWidth) / 144;
                         int numOfWindows =
                             int.tryParse(numOfWindowsController.text) ?? 1;
-                        // window size in inches
-                        double totalWindowSize =
-                            numOfWindows * (windowHeight * windowWidth);
 
-                        // trim size values
-                        double baseboardHeight =
-                            double.tryParse(baseboardHeightController.text) ??
-                                0;
-                        double crownMoldingHeight = double.tryParse(
-                                crownMoldingHeightController.text) ??
-                            0;
+                        // store trim values
+                        double baseboard =
+                            (double.tryParse(baseboardHeightController.text) ??
+                                    0) /
+                                12;
+                        double crownMolding = (double.tryParse(
+                                    crownMoldingHeightController.text) ??
+                                0) /
+                            12;
 
-                        // subtract doors, windows, and trim from square footage
-                        double adjustedTotalSquareFeet =
-                            totalWallSize - totalDoorSize - totalWindowSize;
+                        wallLength -= (baseboard + crownMolding);
+                        //print('Wall Length: $wallLength square feet');
 
-                        // calculate gallons needed (1 gallon per 400 square feet)
-                        double gallonsNeeded =
-                            adjustedTotalSquareFeet / (400.0 * 12);
+                        // calculate wall area
+                        double wallArea = numOfWalls * (wallLength * wallWidth);
 
-                        // update the result text
+                        // Print the wall area for debugging
+                        //print('Wall Area: $wallArea square feet');
+
+                        // subtract baseboard and crown molding
+                        wallArea -= (doorSize * numOfDoors) +
+                            (windowSize * numOfWindows);
+                        // Print the adjust wall area for debugging
+                        //print('Adjusted Wall Area: $wallArea square feet');
+
+                        // calculate gallons needed (1 gallon per 400 sqft)
+                        double gallonsNeeded = wallArea / 400;
+
                         resultController.text =
-                            gallonsNeeded.toStringAsFixed(0);
+                            gallonsNeeded.toStringAsFixed(2);
 
                         // Show the result alert
                         CustomAlertDialog.showAlert(
