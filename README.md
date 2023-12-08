@@ -149,5 +149,9 @@ samples, guidance on mobile development, and a full API reference.
   yet.  
   RenoVision will hopefully one day be the first thing people think about when they plan on doing
   any sort of home renovation project, locating a contractor, or buying materials for their home.
-  
+
+## 3.  Plans for all phases of SDLC
+
+[All Prior Documentation](https://github.com/JJGallegos/RenoVision_Github/tree/9fea3879ba00bfcfd02bfa476882b8f9e2b4346c/All%20Prior%20Documentation)
+
   
