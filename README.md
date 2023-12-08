@@ -70,7 +70,7 @@ samples, guidance on mobile development, and a full API reference.
 
   # User Interface Overview
   
-  8 main buttons:
+  8 Primary Buttons:
   - Help (?)
       > general steps for using the app
   - Paint
@@ -88,5 +88,41 @@ samples, guidance on mobile development, and a full API reference.
   - Estimate!
       > calculates materials result based on inputs
 
+  3 Primary Features:
+  - User Registration/Login
+      > connected to Firebase, users can create a RenoVision profile with
+      a username, email, and password.
+  - Measuring and Calculation Process
+      > users can choose an estimation type, click on the camera button to
+      gather measurements for the necessary inputs, and click Estimate! to
+      generate a respective result
+  - Contractors
+      > users can view a list of registered contractors or they can register
+        to become a contractor- then they're appended to the view contractors list
 
+  # Privacy and Security 
 
+  - User Authentication
+  > RenoVision utilizes Firebase for user authentication, ensuring a secure and efficient
+    login process. User credentials, including passwords, are hashed and stored with
+    advanced encryption techniques.
+
+  - Data Handling
+  > We prioritize user privacy by not storing additional user data beyond what's essential
+    for authentication. Firebase securely manages and authenticates user accounts, following
+    industry best practices.
+
+  - Continuous Security Measures
+  > RenoVision is committed to continuous monitoring and improvement of security measures.
+    We stay informed about the latest security practices and promptly address any potential
+    vulnerabilities.
+
+  - Encryption and Privacy Policy
+  > All data transmitted between the app and Firebase is encrypted using industry-standard
+    protocols. For a comprehensive understanding of data management and security, please
+    refer to our Privacy Policy.
+
+  - Reporting Concerns:
+  > If you identify security concerns or have suggestions, contact our support team. Your
+    feedback is essential for maintaining a secure environment for all RenoVision users.
+    
