@@ -129,7 +129,7 @@ samples, guidance on mobile development, and a full API reference.
   # Trouble Shooting
   
   1.  Pod Error/No Pod File/Pod Not Found:  If you come across this error, this is how
-      to fix it. (answer for MacOS related problems)
+      to fix it. (answer is MacOS syntax)
       > Step 1:  Make sure you are in the project directory terminal (' cd RenoVision_Github' )
       > Step 2:  Go to this ios folder (' cd ios ')
       > Step 3:  Type ' pod install '
