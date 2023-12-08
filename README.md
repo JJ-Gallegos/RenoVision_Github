@@ -55,10 +55,38 @@ samples, guidance on mobile development, and a full API reference.
   4. Use the "Clone" or "Download" button on the repository page to obtain the app code.
      
   # Set Up the Development Environment:
-  1. Follow the provided instructions in the repository to set up the development environment on your machine.
-  2. Open a terminal within the project directory and run the command flutter pub get to install dependencies.
+  1. Follow the provided instructions in the repository to set up the development
+     environment on your machine.
+  2. Open a terminal within the project directory and run the command 'flutter pub get'
+     to install dependencies.
   3. Run the App Locally
   4. Execute the necessary commands to run the app locally on your development machine.
+
+  # Initial Setup Steps:
+  1. Open the app within your chosen development environment.
+  2. Create a test account by using the provided registration feature.
+  3. Input a username, email, password, and confirm the password for the test account.
+  4. Log in using the created test account to access the main screen and rest of features.
+
+  # User Interface Overview
+  
+  8 main buttons:
+  - Help (?)
+      general steps for using the app
+  - Paint
+      paint estimation screen
+  - Flooring
+      flooring estimation screen
+  - Roofing
+      roofing estimation screen    
+  - View Contractors
+      list of all registered contractors   
+  - Register as Contractor
+      registration form to become contractor  
+  - Scan
+      sends user to AR measurement app
+  - Estimate!
+      calculates materials result based on inputs
 
 
 
