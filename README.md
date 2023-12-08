@@ -122,7 +122,7 @@ samples, guidance on mobile development, and a full API reference.
     protocols. For a comprehensive understanding of data management and security, please
     refer to our Privacy Policy.
 
-  - Reporting Concerns:
+  - Reporting Concerns
   > If you identify security concerns or have suggestions, contact our support team. Your
     feedback is essential for maintaining a secure environment for all RenoVision users.
 
