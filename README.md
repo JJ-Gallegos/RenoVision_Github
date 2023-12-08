@@ -156,6 +156,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## 4.  Presentation
 
+- PDF of the PowerPoint
 [RenoVision Group 1.pdf](https://github.com/JJ-Gallegos/RenoVision_Github/blob/0c34ae2d3712ec2829a60888b1b63c258a2d6ee0/RenoVision%20Group%201.pdf)
 
-  
+- YouTube of Demo Video
+[Watch the Video on YouTube](https://youtu.be/F8dN8cbFl1A)
