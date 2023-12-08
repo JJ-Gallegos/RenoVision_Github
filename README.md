@@ -72,21 +72,21 @@ samples, guidance on mobile development, and a full API reference.
   
   8 main buttons:
   - Help (?)
-      general steps for using the app
+      > general steps for using the app
   - Paint
-      paint estimation screen
+      > paint estimation screen
   - Flooring
-      flooring estimation screen
+      > flooring estimation screen
   - Roofing
-      roofing estimation screen    
+      > roofing estimation screen    
   - View Contractors
-      list of all registered contractors   
+      > list of all registered contractors   
   - Register as Contractor
-      registration form to become contractor  
+      > registration form to become contractor  
   - Scan
-      sends user to AR measurement app
+      > sends user to AR measurement app
   - Estimate!
-      calculates materials result based on inputs
+      > calculates materials result based on inputs
 
 
 
