@@ -128,9 +128,26 @@ samples, guidance on mobile development, and a full API reference.
 
   # Trouble Shooting
   1.  Pod Error/No Pod File/Pod Not Found:  If you come across this error, this is how
-      to fix it. (answers for MacOS related problems)
+      to fix it. (answer for MacOS related problems)
       > Step 1:  Make sure you are in the project directory terminal (' cd RenoVision_Github' )
       > Step 2:  Go to this ios folder (' cd ios ')
       > Step 3:  Type ' pod install '
       This should fix the issue and allow you to run the app as normal.
+
+  # Conclusion/Future Plans
+  As stated prior, our technical skills are limited with app development, and the time limit
+  was not very long to develop everything we had initially planned on. One feature we would like
+  is to have an AR measurer of our own- built into the app.  This way, the user stays within the
+  RenoVision app through the entirety of the calculation process.  The next feature would be a way
+  to automatically input the measurements into the appropriate field so that the user doesn't even
+  have to type in their measurements- they are auto populated into the field.  The last big thing
+  that we wanted to add was a shop feature.  In here users could potentially get discounts from
+  stores who teamed up with RenoVision to sell their products (paint, tile, hardwood, shingles).
+  We planned on reaching out to stores who wanted to use us as a way to advertise their products.
+  RenoVision would really need to make a name for itself in this sector of the market to be able to
+  pull that off, but it is definitely possible considering there is no other app like this out there
+  yet.  
+  RenoVision will hopefully one day be the first thing people think about when they plan on doing
+  any sort of home renovation project, locating a contractor, or buying materials for their home.
+  
   
