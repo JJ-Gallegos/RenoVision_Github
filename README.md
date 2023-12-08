@@ -127,6 +127,7 @@ samples, guidance on mobile development, and a full API reference.
     feedback is essential for maintaining a secure environment for all RenoVision users.
 
   # Trouble Shooting
+  
   1.  Pod Error/No Pod File/Pod Not Found:  If you come across this error, this is how
       to fix it. (answer for MacOS related problems)
       > Step 1:  Make sure you are in the project directory terminal (' cd RenoVision_Github' )
@@ -135,6 +136,7 @@ samples, guidance on mobile development, and a full API reference.
       This should fix the issue and allow you to run the app as normal.
 
   # Conclusion/Future Plans
+  
   As stated prior, our technical skills are limited with app development, and the time limit
   was not very long to develop everything we had initially planned on. One feature we would like
   is to have an AR measurer of our own- built into the app.  This way, the user stays within the
