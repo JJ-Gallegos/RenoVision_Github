@@ -152,6 +152,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## 3.  Plans for all phases of SDLC
 
-[All Prior Documentation](https://github.com/JJGallegos/RenoVision_Github/tree/9fea3879ba00bfcfd02bfa476882b8f9e2b4346c/All%20Prior%20Documentation)
+[All Prior Documentation](https://github.com/JJ-Gallegos/RenoVision_Github/tree/9fea3879ba00bfcfd02bfa476882b8f9e2b4346c/All%20Prior%20Documentation)
+
 
   
