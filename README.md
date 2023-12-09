@@ -153,8 +153,8 @@ samples, guidance on mobile development, and a full API reference.
   any sort of home renovation project, locating a contractor, or buying materials for their home.
 
 ## 2. Code Documents
-  Anything pertaining to the planning/implementation of our code is listed within this readme file
-  or repository.
+  Anything pertaining to the planning/implementation of our code is listed within #3 (below) or the
+  codespace itself.
 
 ## 3.  Plans for all phases of SDLC
 
