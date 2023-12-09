@@ -126,7 +126,7 @@ samples, guidance on mobile development, and a full API reference.
   > If you identify security concerns or have suggestions, contact our support team. Your
     feedback is essential for maintaining a secure environment for all RenoVision users.
 
-  # Trouble Shooting
+  # Troubleshooting
   
   1.  Pod Error/No Pod File/Pod Not Found:  If you come across this error, this is how
       to fix it. (answer is MacOS syntax)
